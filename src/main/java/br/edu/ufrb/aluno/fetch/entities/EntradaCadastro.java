@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 /* ObjectMapper om = new ObjectMapper();
 Root root = om.readValue(myJsonString, Root.class); */
 public class EntradaCadastro{
-    public int codigo;
+    public String codigo;
     public int quantidade;
     public int pesoEmGramas;
     
@@ -21,10 +21,10 @@ public class EntradaCadastro{
 
     //GETTERS E SETTERS
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
     public int getQuantidade() {

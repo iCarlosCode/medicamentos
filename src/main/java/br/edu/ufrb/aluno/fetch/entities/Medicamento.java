@@ -1,7 +1,7 @@
 package br.edu.ufrb.aluno.fetch.entities;
 
 public class Medicamento {
-    private int codigo;
+    private String codigo;
     private int quantidade;
     private int pesoEmGramas;
     
@@ -15,7 +15,7 @@ public class Medicamento {
     
 
 
-    public Medicamento(int codigo, 
+    public Medicamento(String codigo, 
     int quantidade, 
     int pesoEmGramas,
     boolean statusGenerico, 
@@ -40,7 +40,7 @@ public class Medicamento {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         Medicamento remedio = (Medicamento) obj;
-        return this.codigo == remedio.codigo &&
+        return  this.codigo.equals(remedio.getCodigo()) &&
                 this.pesoEmGramas == remedio.pesoEmGramas &&
                 this.statusGenerico == remedio.statusGenerico &&
                 this.statusTarjaPreta == remedio.statusTarjaPreta &&
@@ -51,10 +51,10 @@ public class Medicamento {
     
    
     //Getters e Setters do Medicamento
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
     public int getQuantidade() {

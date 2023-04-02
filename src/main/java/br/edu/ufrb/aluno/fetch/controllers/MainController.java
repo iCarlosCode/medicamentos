@@ -54,25 +54,43 @@ public class MainController {
                 entradaCadastro.getFabricante(),
                 entradaCadastro.getOutrasInformacoes());
 
+
+                //Adicionando o primeiro medicamento
                 if(armario.getMedicamentos().size() < 1){
 
                     armario.setMedicamentos(medicamentoNovo);
-                }
-                for (Medicamento remedio : armario.getMedicamentos()) {
-                    System.out.println("Medicamento: " + remedio.getNome());
-
-                        if(remedio.equals(medicamentoNovo)){
-                            System.out.println("O medicamento adicionado " + medicamentoNovo.getNome() + "Já existe. Atualizamos a quantidade dele para " + (remedio.getQuantidade() + medicamentoNovo.getQuantidade()) + " unidades");
-                            remedio.setQuantidade(remedio.getQuantidade() + 1);
-                            break;
-                        }else{
-                            armario.setMedicamentos(medicamentoNovo);
-                        }
                     
+                }else{
+                    boolean jaExiste = false;
+                    for (Medicamento remedio : armario.getMedicamentos()) {
+                        System.out.println("Medicamento: " + remedio.getNome());
+    
+                        //Verificando se já tem um remedio igual ao que vc está querendo cadastrar
+                        if((remedio.getNome() == medicamentoNovo.getNome() && remedio.getCodigo() != medicamentoNovo.getCodigo())){
+    
+                                System.out.println("Inconsistencia: vc já cadastrou esse medicamento com nome ou código diferente.");
+                        }else if(remedio.equals(medicamentoNovo)){
+    
                 
+                            //aumentando a quantidade do medicamento
+                            jaExiste = true;
+                            remedio.setQuantidade(remedio.getQuantidade() + medicamentoNovo.getQuantidade());
+                            break;
+                        }
+                        
+                    }
+                    
+                    if(!jaExiste){
+                        //colocando o medicamento no armario
+                        armario.setMedicamentos(medicamentoNovo);
+                    }
                 }
+                    //Adicionando demais medicamentos no armario
                 
-        } catch(Exception e){
+                    
+            
+                    
+        }catch(Exception e){
             e.printStackTrace();
             System.out.println("Deu erro pae");
         }

@@ -13,10 +13,11 @@ public class ArmarioDeMedicamentos {
     }
 
     public ResponseEntity<String> setMedicamentos(Medicamento placebo) {
-        if(placebo.getCodigo() > 0 && placebo.getQuantidade() > 0 && placebo.getPesoEmGramas() > 0 && !placebo.getNome().isEmpty() && !placebo.getFabricante().isEmpty()){
+        if(!placebo.getCodigo().isEmpty() && placebo.getQuantidade() > 0 && placebo.getPesoEmGramas() > 0 && !placebo.getNome().isEmpty() && !placebo.getFabricante().isEmpty()){
             this.medicamentos.add(placebo);
             return ResponseEntity.ok("ok");
         }
+        
         
         throw new IllegalArgumentException("temos um parametro invalido");
     }
