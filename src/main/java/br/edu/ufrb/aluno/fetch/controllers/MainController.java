@@ -39,7 +39,7 @@ public class MainController {
         
         String json = medicamentoACadastrar;
         
-
+        
         try{
             ObjectMapper mapper = new ObjectMapper();
             EntradaCadastro entradaCadastro = mapper.readValue(json, EntradaCadastro.class);
@@ -54,23 +54,24 @@ public class MainController {
                 entradaCadastro.getFabricante(),
                 entradaCadastro.getOutrasInformacoes());
 
-            System.out.println("medicamentoNOVo testeado:" + medicamentoNovo.getCodigo());
-            boolean jaExiste = false;
-            //esse for ta bixado
-            for(Medicamento remedio: armario.getMedicamentos()){
-                System.out.println("remedio testeado:" + remedio.getCodigo());
+                if(armario.getMedicamentos().size() < 1){
 
-                if(remedio.getCodigo() == medicamentoNovo.getCodigo() && remedio.getNome()== medicamentoNovo.getNome() && remedio.getFabricante() == medicamentoNovo.getFabricante()){
-                    System.out.println("já existe esse medicamento, ent acrescemos a quantidade dele");
-                    remedio.setQuantidade(remedio.getQuantidade() + 1);
-                    jaExiste = true;
-                    break;
+                    armario.setMedicamentos(medicamentoNovo);
                 }
-            }
-            if(!jaExiste){
-                armario.setMedicamentos(medicamentoNovo);
-                //System.out.println("Medicamento Cadastrado com sucesso");
-            }
+                for (Medicamento remedio : armario.getMedicamentos()) {
+                    System.out.println("Medicamento: " + remedio.getNome());
+
+                        if(remedio.equals(medicamentoNovo)){
+                            System.out.println("O medicamento adicionado " + medicamentoNovo.getNome() + "Já existe. Atualizamos a quantidade dele para " + (remedio.getQuantidade() + medicamentoNovo.getQuantidade()) + " unidades");
+                            remedio.setQuantidade(remedio.getQuantidade() + 1);
+                            break;
+                        }else{
+                            armario.setMedicamentos(medicamentoNovo);
+                        }
+                    
+                
+                }
+                
         } catch(Exception e){
             e.printStackTrace();
             System.out.println("Deu erro pae");

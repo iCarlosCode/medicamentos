@@ -21,6 +21,9 @@ form {
     padding: 20px;
     width: 80%;
 }
+.aviso {
+    display: none;
+}
 
 label {
     display: inline-block;

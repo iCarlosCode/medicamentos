@@ -12,13 +12,13 @@
     <button onclick="requestGet()">Clique para fazer um GET de todos os Medicamentos no Armario</button>
     <form id="form-cadastro" action="" method="post">
 
-        <label for="nome">Nome:</label>
+        <label for="nome" required>Nome:</label>
         <input id="nome" type="text">
 
         <label for="codigo">Código do Medicamento:</label>
         <input id="codigo" type="number">
 
-        <label for="quantidade">Peso(g):</label>
+        <label for="pesoEmGramas">Peso(g):</label>
         <input id="pesoEmGramas" type="number">
 
         <label for="quantidade">Quantidade:</label>
@@ -35,11 +35,12 @@
         <label for="statusGenerico">É Tarja Preta?</label>
         <input id="statusTarjaPreta" type="checkbox">
     
+        <span class="aviso">*</span>
 
     
-       
-        <button onclick="requestPOST()">Cadastrar</button>
+        
     </form>
+    <button onclick="requestPOST()">Cadastrar</button>
     
      <script src="app.js"></script>
 </body>

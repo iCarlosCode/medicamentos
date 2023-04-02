@@ -15,7 +15,6 @@ public class Medicamento {
     
 
 
-
     public Medicamento(int codigo, 
     int quantidade, 
     int pesoEmGramas,
@@ -25,31 +24,32 @@ public class Medicamento {
     String fabricante, 
     String outrasInformacoes) {
         this.codigo = codigo;
-        this.quantidade = quantidade;
-        this.pesoEmGramas = pesoEmGramas;
-        this.statusGenerico = statusGenerico;
-        this.statusTarjaPreta = statusTarjaPreta;
-        this.nome = nome;
-        this.fabricante = fabricante;
-        this.outrasInformacoes = outrasInformacoes;
+            this.quantidade = quantidade;
+            this.pesoEmGramas = pesoEmGramas;
+            this.statusGenerico = statusGenerico;
+            this.statusTarjaPreta = statusTarjaPreta;
+            this.nome = nome;
+            this.fabricante = fabricante;
+            this.outrasInformacoes = outrasInformacoes;
+
+        
         
     }
     
-    /*
     @Override
-    public boolean equals(Medicamento placebo) {
-        if(this.codigo == placebo.getCodigo() && this.nome.toLowerCase() == placebo.getNome().toLowerCase()){
-            return true;
-        }
-        return false;
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        Medicamento remedio = (Medicamento) obj;
+        return this.codigo == remedio.codigo &&
+                this.pesoEmGramas == remedio.pesoEmGramas &&
+                this.statusGenerico == remedio.statusGenerico &&
+                this.statusTarjaPreta == remedio.statusTarjaPreta &&
+                this.nome.toLowerCase().equals(remedio.nome.toLowerCase()) &&
+                this.fabricante.toLowerCase().equals(remedio.fabricante.toLowerCase()) &&
+                this.outrasInformacoes.toLowerCase().equals(remedio.outrasInformacoes.toLowerCase());
     }
-     */
-/*
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, age);
-    }
- */
+    
+   
     //Getters e Setters do Medicamento
     public int getCodigo() {
         return codigo;
