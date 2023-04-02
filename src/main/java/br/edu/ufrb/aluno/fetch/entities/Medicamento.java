@@ -34,8 +34,22 @@ public class Medicamento {
         this.outrasInformacoes = outrasInformacoes;
         
     }
-
-
+    
+    /*
+    @Override
+    public boolean equals(Medicamento placebo) {
+        if(this.codigo == placebo.getCodigo() && this.nome.toLowerCase() == placebo.getNome().toLowerCase()){
+            return true;
+        }
+        return false;
+    }
+     */
+/*
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+ */
     //Getters e Setters do Medicamento
     public int getCodigo() {
         return codigo;

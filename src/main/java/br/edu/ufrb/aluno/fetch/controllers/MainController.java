@@ -43,6 +43,7 @@ public class MainController {
         try{
             ObjectMapper mapper = new ObjectMapper();
             EntradaCadastro entradaCadastro = mapper.readValue(json, EntradaCadastro.class);
+
             Medicamento medicamentoNovo = new Medicamento(
                 entradaCadastro.getCodigo(),
                 entradaCadastro.getQuantidade(), 
@@ -53,8 +54,23 @@ public class MainController {
                 entradaCadastro.getFabricante(),
                 entradaCadastro.getOutrasInformacoes());
 
-            armario.setMedicamentos(medicamentoNovo);
-            System.out.println("Medicamento Cadastrado com sucesso");
+            System.out.println("medicamentoNOVo testeado:" + medicamentoNovo.getCodigo());
+            boolean jaExiste = false;
+            //esse for ta bixado
+            for(Medicamento remedio: armario.getMedicamentos()){
+                System.out.println("remedio testeado:" + remedio.getCodigo());
+
+                if(remedio.getCodigo() == medicamentoNovo.getCodigo() && remedio.getNome()== medicamentoNovo.getNome() && remedio.getFabricante() == medicamentoNovo.getFabricante()){
+                    System.out.println("já existe esse medicamento, ent acrescemos a quantidade dele");
+                    remedio.setQuantidade(remedio.getQuantidade() + 1);
+                    jaExiste = true;
+                    break;
+                }
+            }
+            if(!jaExiste){
+                armario.setMedicamentos(medicamentoNovo);
+                //System.out.println("Medicamento Cadastrado com sucesso");
+            }
         } catch(Exception e){
             e.printStackTrace();
             System.out.println("Deu erro pae");
