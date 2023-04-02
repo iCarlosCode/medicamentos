@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="start()">
+    <h1>Bem vindo ao Armário de Medicamentos</h1>
+    <button onclick="requestGet()">Clique para fazer um GET de todos os Medicamentos no Armario</button>
+    <form id="form-cadastro" action="" method="post">
+
+        <label for="nome">Nome:</label>
+        <input id="nome" type="text">
+
+        <label for="codigo">Código do Medicamento:</label>
+        <input id="codigo" type="number">
+
+        <label for="quantidade">Peso(g):</label>
+        <input id="pesoEmGramas" type="number">
+
+        <label for="quantidade">Quantidade:</label>
+        <input id="quantidade" type="number">
+
+        <label for="fabricante">Fabricante:</label>
+        <input id="fabricante" type="text">
+
+        <label for="info">Outras Informações:</label>
+        <input id="info" type="text">
+
+        <label for="statusGenerico">É genérico?</label>
+        <input id="statusGenerico" type="checkbox">
+        <label for="statusGenerico">É Tarja Preta?</label>
+        <input id="statusTarjaPreta" type="checkbox">
+    
+
+    
+       
+        <button onclick="requestPOST()">Cadastrar</button>
+    </form>
+    
+     <script src="app.js"></script>
+</body>
+</html>
