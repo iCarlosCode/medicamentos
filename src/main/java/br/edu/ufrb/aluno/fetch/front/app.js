@@ -52,5 +52,6 @@ function requestPOST(){
      .catch(function(e){
         console.log("Erro: " + e)
     })
+    requestGet();
 }
 

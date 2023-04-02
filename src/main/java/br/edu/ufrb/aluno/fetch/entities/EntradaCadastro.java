@@ -19,6 +19,11 @@ public class EntradaCadastro{
     public String outrasInformacoes;
  
 
+    public String generateId(String nome, int nextID) {
+        String id = String.format("%04d", nextID);
+        return nome.charAt(0) + id; //primeiraletra do nome mais um numero (P004)
+    }
+    
     //GETTERS E SETTERS
 
     public String getCodigo() {

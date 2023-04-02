@@ -25,6 +25,7 @@ import br.edu.ufrb.aluno.fetch.entities.EntradaCadastro;
 @RequestMapping("api/armario")
 public class MainController {
     ArmarioDeMedicamentos armario = new ArmarioDeMedicamentos();
+    int nextID = 0;
 
     //Pegue os medicamentos do armario
     @GetMapping("/get/medicamentos")
@@ -45,7 +46,7 @@ public class MainController {
             EntradaCadastro entradaCadastro = mapper.readValue(json, EntradaCadastro.class);
 
             Medicamento medicamentoNovo = new Medicamento(
-                entradaCadastro.getCodigo(),
+                entradaCadastro.generateId(entradaCadastro.getNome(), nextID),
                 entradaCadastro.getQuantidade(), 
                 entradaCadastro.getPesoEmGramas(),
                 entradaCadastro.isStatusGenerico(),
@@ -54,24 +55,25 @@ public class MainController {
                 entradaCadastro.getFabricante(),
                 entradaCadastro.getOutrasInformacoes());
 
-
+            
+                
+                
                 //Adicionando o primeiro medicamento
                 if(armario.getMedicamentos().size() < 1){
 
                     armario.setMedicamentos(medicamentoNovo);
-                    
-                }else{
+                
+                }
+                //adicionando os demais medicamentos
+                else{
+
                     boolean jaExiste = false;
+                    //Passeando por todos os medicamentos no armario
                     for (Medicamento remedio : armario.getMedicamentos()) {
                         System.out.println("Medicamento: " + remedio.getNome());
     
                         //Verificando se já tem um remedio igual ao que vc está querendo cadastrar
-                        if((remedio.getNome() == medicamentoNovo.getNome() && remedio.getCodigo() != medicamentoNovo.getCodigo())){
-    
-                                System.out.println("Inconsistencia: vc já cadastrou esse medicamento com nome ou código diferente.");
-                        }else if(remedio.equals(medicamentoNovo)){
-    
-                
+                         if(remedio.equals(medicamentoNovo)){
                             //aumentando a quantidade do medicamento
                             jaExiste = true;
                             remedio.setQuantidade(remedio.getQuantidade() + medicamentoNovo.getQuantidade());

@@ -36,6 +36,8 @@ public class Medicamento {
         
     }
     
+    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
@@ -49,6 +51,7 @@ public class Medicamento {
                 this.outrasInformacoes.toLowerCase().equals(remedio.outrasInformacoes.toLowerCase());
     }
     
+
    
     //Getters e Setters do Medicamento
     public String getCodigo() {
