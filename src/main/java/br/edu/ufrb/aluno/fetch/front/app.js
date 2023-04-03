@@ -10,6 +10,27 @@ function requestGet(){
     })
      .then(function(jsonData){
         console.log(jsonData)
+            let ul = document.createElement('ul');
+            ul.className = "list-group";
+            jsonData.forEach(function(medicamento) {
+                let li = document.createElement('li');
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+                let nome = document.createTextNode(medicamento.nome);
+                let codigo = document.createTextNode("Codigo do Medicamento: " + medicamento.codigo);
+                let span = document.createElement('span');
+                span.className = "badge bg-primary rounded-pill";
+
+                span.appendChild(codigo);
+                li.appendChild(nome);
+                li.appendChild(span);
+                ul.appendChild(li);
+
+                li.addEventListener("click", function() {
+                    abrirModal(medicamento);
+                });
+            });
+        document.body.appendChild(ul);
         return jsonData;
      })
      .catch(function(e){
@@ -47,11 +68,29 @@ function requestPOST(){
     })
      .then(function(jsonData){
         console.log(jsonData)
+        requestGet();
+        
         return jsonData;
      })
      .catch(function(e){
         console.log("Erro: " + e)
     })
-    requestGet();
+}
+
+function abrirModal(medicamento) {
+    var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    var modalTitle = document.querySelector('.modal-title');
+    var modalBody = document.querySelector('.modal-body');
+    
+    modalTitle.textContent = medicamento.nome;
+    modalBody.innerHTML = `<p><strong>Código:</strong> ${medicamento.codigo}</p>
+                            <p><strong>Quantidade:</strong> ${medicamento.quantidade}</p>
+                            <p><strong>Peso em gramas:</strong> ${medicamento.pesoEmGramas}</p>
+                            <p><strong>Status Genérico:</strong> ${medicamento.statusGenerico}</p>
+                            <p><strong>Status Tarja Preta:</strong> ${medicamento.statusTarjaPreta}</p>
+                            <p><strong>Fabricante:</strong> ${medicamento.fabricante}</p>
+                            <p><strong>Outras informações:</strong> ${medicamento.outrasInformacoes}</p>`;
+    
+    modal.show();
 }
 

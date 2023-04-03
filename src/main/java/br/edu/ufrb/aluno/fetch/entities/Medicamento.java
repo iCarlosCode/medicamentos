@@ -42,7 +42,7 @@ public class Medicamento {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         Medicamento remedio = (Medicamento) obj;
-        return  this.codigo.equals(remedio.getCodigo()) &&
+        return  
                 this.pesoEmGramas == remedio.pesoEmGramas &&
                 this.statusGenerico == remedio.statusGenerico &&
                 this.statusTarjaPreta == remedio.statusTarjaPreta &&

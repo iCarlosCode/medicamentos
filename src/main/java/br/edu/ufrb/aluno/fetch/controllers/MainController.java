@@ -3,11 +3,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -55,13 +57,14 @@ public class MainController {
                 entradaCadastro.getFabricante(),
                 entradaCadastro.getOutrasInformacoes());
 
-            
                 
                 
                 //Adicionando o primeiro medicamento
                 if(armario.getMedicamentos().size() < 1){
 
                     armario.setMedicamentos(medicamentoNovo);
+                    nextID++;
+
                 
                 }
                 //adicionando os demais medicamentos
@@ -85,6 +88,8 @@ public class MainController {
                     if(!jaExiste){
                         //colocando o medicamento no armario
                         armario.setMedicamentos(medicamentoNovo);
+                        nextID++;
+
                     }
                 }
                     //Adicionando demais medicamentos no armario
