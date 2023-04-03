@@ -1,16 +1,66 @@
+
+
+
 function start(){
+    clearScreen();
     requestGet();
+    console.log("start ativada");
 }
 function requestGet(){
     console.log("Função Get foi ativada")
     
-    const response = fetch("http://localhost:8080/api/armario/get/medicamentos")
+    const response = fetch("http://localhost:8081/api/armario/get/medicamentos")
     .then( function (responseData){
            return responseData.json()
     })
      .then(function(jsonData){
         console.log(jsonData)
             let ul = document.createElement('ul');
+            ul.className = "list-group";
+            jsonData.forEach(function(medicamento) {
+                let li = document.createElement('li');
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+                let nome = document.createTextNode(medicamento.nome);
+                let codigo = document.createTextNode("Codigo do Medicamento: " + medicamento.codigo);
+                let span = document.createElement('span');
+                span.className = "badge bg-primary rounded-pill";
+
+                span.appendChild(codigo);
+                li.appendChild(nome);
+                li.appendChild(span);
+                ul.appendChild(li);
+
+                li.addEventListener("click", function() {
+                    abrirModal(medicamento);
+                });
+            });
+        document.body.appendChild(ul);
+        return jsonData;
+     })
+     .catch(function(e){
+        console.log("Erro: " + e)
+     })
+}
+
+function requestGetSearch(event){
+    clearScreen();
+    console.log("Função GetSearch foi ativada")
+    const searchedNome = event.target.value;
+
+    if(searchedNome.length == 0){
+        console.log("n tem nada na barra de pesquisa")
+        requestGet();
+        return;
+    }
+    const response = fetch(`http://localhost:8081/api/armario/get/medicamento?nome=${searchedNome}`)
+    .then( function (responseData){
+           return responseData.json()
+    })
+     .then(function(jsonData){
+        console.log(jsonData)
+            let ul = document.createElement('ul');
+            
             ul.className = "list-group";
             jsonData.forEach(function(medicamento) {
                 let li = document.createElement('li');
@@ -62,13 +112,12 @@ function requestPOST(){
             "outrasInformacoes": formInputs[5].value
         }),
     };
-    const response = fetch("http://localhost:8080/api/armario/create/medicamento", init)
+    const response = fetch("http://localhost:8081/api/armario/create/medicamento", init)
     .then( function (responseData){
            return responseData.json()
     })
      .then(function(jsonData){
         console.log(jsonData)
-        requestGet();
         
         return jsonData;
      })
@@ -94,3 +143,51 @@ function abrirModal(medicamento) {
     modal.show();
 }
 
+
+function clearScreen() {
+    const medicamentos = document.querySelectorAll(".list-group");
+    for (let i = 0; i < medicamentos.length; i++) {
+      medicamentos[i].remove();
+    }
+}
+
+function requestPOSTFAKE(){
+    for(var i = 0; i < 10; i++){
+        var formInputs = document.querySelectorAll("#form-cadastro input");
+    
+        const randomNum = Math.floor(Math.random() * 1000); // gera um número aleatório entre 0 e 999
+
+    console.log("Função POST FAKE foi ativada")
+    const headers = {
+        "Content-Type": "application/json",
+        "Testando": "Teste"
+    }
+    const init = {
+        'method': "POST",
+        'headers': headers,
+        'body': JSON.stringify({
+            "codigo": "teste123",
+            "quantidade": 123,
+            "pesoEmGramas": 123,
+            "statusGenerico": true ,
+            "statusTarjaPreta": true,
+            "nome": String(randomNum),
+            "fabricante": "padrao",
+            "outrasInformacoes": "fake"
+        }),
+    };
+    const response = fetch("http://localhost:8081/api/armario/create/medicamento", init)
+    .then( function (responseData){
+           return responseData.json()
+    })
+     .then(function(jsonData){
+        console.log(jsonData)
+        
+        return jsonData;
+     })
+     .catch(function(e){
+        console.log("Erro: " + e)
+    })
+    }
+    
+}

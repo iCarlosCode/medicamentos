@@ -16,6 +16,7 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <input type="text" onkeyup="requestGetSearch(event)">
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
               <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Area de Cadastro</h5>
@@ -23,7 +24,7 @@
             </div>
             <div class="offcanvas-body">
                 <form id="form-cadastro" action="" method="post">
-
+                    <button onclick="requestPOSTFAKE()">Estoque FAKE</button>
                     <label for="nome" required>Nome:</label>
                     <input id="nome" type="text">
             
@@ -51,17 +52,15 @@
                 
                     <span class="aviso">*</span>
                     
-                    <button onclick="requestPOST()">Cadastrar</button>
+                    <button onclick="requestPOST()"> Cadastrar</button>
                 </form>
             </div>
           </div>
 
-        </div>
+        </div>  
     </nav>
-    <br><br><br>
-    <ul class="list-group">
-        
-    </ul>
+    <br><br><br><br><br><br><br>
+   
       <!--
 
           <button onclick="requestGet()">Clique para fazer um GET de todos os Medicamentos no Armario</button>
@@ -112,7 +111,6 @@
             </div>
             </div>
         </div>
-
     
     
      <script src="app.js"></script>

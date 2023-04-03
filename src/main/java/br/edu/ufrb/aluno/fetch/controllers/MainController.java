@@ -27,13 +27,27 @@ import br.edu.ufrb.aluno.fetch.entities.EntradaCadastro;
 @RequestMapping("api/armario")
 public class MainController {
     ArmarioDeMedicamentos armario = new ArmarioDeMedicamentos();
+    
+
+    
+        
+
+    
     int nextID = 0;
 
-    //Pegue os medicamentos do armario
+    //Pegue todos os medicamentos do armario
     @GetMapping("/get/medicamentos")
     public ArrayList<Medicamento> getMedicamentos() {
        // armario.setMedicamentos(medicamento);
         return armario.getMedicamentos();
+    }
+
+    @GetMapping("/get/medicamento")
+    public ArrayList<Medicamento> getSearchMedicamento(@RequestParam String nome) {
+       // armario.setMedicamentos(medicamento);
+        System.out.println(armario.searchMedicamento(nome));
+
+        return armario.searchMedicamento(nome);
     } 
 
     //Crie um novo medicamento
