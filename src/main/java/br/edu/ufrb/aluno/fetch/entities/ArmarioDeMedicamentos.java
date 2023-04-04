@@ -39,5 +39,15 @@ public class ArmarioDeMedicamentos {
         }
         return medicamentosProcurados;
     }
+
+    public void removeMedicamento(String codigo){
+        for (Medicamento medicamento: this.medicamentos){
+
+            if(medicamento.getCodigo().equals(codigo)){
+                this.medicamentos.remove(medicamento);
+            }
+            
+        }
+    }
    
 }

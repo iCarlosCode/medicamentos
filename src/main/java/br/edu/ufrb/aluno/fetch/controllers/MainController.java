@@ -28,11 +28,6 @@ import br.edu.ufrb.aluno.fetch.entities.EntradaCadastro;
 public class MainController {
     ArmarioDeMedicamentos armario = new ArmarioDeMedicamentos();
     
-
-    
-        
-
-    
     int nextID = 0;
 
     //Pegue todos os medicamentos do armario
@@ -116,7 +111,18 @@ public class MainController {
             System.out.println("Deu erro pae");
         }
         
-    } 
+    }
 
+    //Remoção de medicamentos
+    @GetMapping("remove/medicamentos")
+    public void excluir(@RequestParam String codigo){
+        
+        /* for (Medicamento remedio : armario.getMedicamentos()) {
+            System.out.println("Medicamento: " + remedio.getNome()
+            + " Código: " + remedio.getCodigo());
+        } */
+
+        armario.removeMedicamento(codigo);
     
+    }
 }
