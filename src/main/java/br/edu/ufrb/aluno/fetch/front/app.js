@@ -92,7 +92,6 @@ function requestPOST(){
     var formInputs = document.querySelectorAll("#form-cadastro input");
     console.log(formInputs[3].checked)
 
-
     console.log("Função POST foi ativada")
     const headers = {
         "Content-Type": "application/json",
