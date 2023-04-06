@@ -190,3 +190,48 @@ function requestPOSTFAKE(){
     }
     
 }
+
+function requestDelete(){
+    clearScreen();
+    console.log("Função GetSearch foi ativada")
+    const searchedNome = event.target.value;
+
+    if(searchedNome.length == 0){
+        console.log("n tem nada na barra de pesquisa")
+        requestGet();
+        return;
+    }
+    const response = fetch(`http://localhost:8081/api/armario/get/medicamento?nome=${searchedNome}`)
+    .then( function (responseData){
+           return responseData.json()
+    })
+     .then(function(jsonData){
+        console.log(jsonData)
+            let ul = document.createElement('ul');
+            
+            ul.className = "list-group";
+            jsonData.forEach(function(medicamento) {
+                let li = document.createElement('li');
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+                let nome = document.createTextNode(medicamento.nome);
+                let codigo = document.createTextNode("Codigo do Medicamento: " + medicamento.codigo);
+                let span = document.createElement('span');
+                span.className = "badge bg-primary rounded-pill";
+
+                span.appendChild(codigo);
+                li.appendChild(nome);
+                li.appendChild(span);
+                ul.appendChild(li);
+
+                li.addEventListener("click", function() {
+                    abrirModal(medicamento);
+                });
+            });
+        document.body.appendChild(ul);
+        return jsonData;
+     })
+     .catch(function(e){
+        console.log("Erro: " + e)
+     })
+}
