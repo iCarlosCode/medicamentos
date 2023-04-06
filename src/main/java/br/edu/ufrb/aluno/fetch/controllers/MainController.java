@@ -114,15 +114,29 @@ public class MainController {
     }
 
     //Remoção de medicamentos
-    @GetMapping("remove/medicamentos")
-    public void excluir(@RequestParam String codigo){
-        
-        /* for (Medicamento remedio : armario.getMedicamentos()) {
-            System.out.println("Medicamento: " + remedio.getNome()
-            + " Código: " + remedio.getCodigo());
-        } */
+    /* @GetMapping("remove/medicamentos")
+    public ResponseEntity<String> listaDeRemedios() {
+        String lista = new String();
+        for (Medicamento remedio : armario.getMedicamentos()) {
+            lista += "Medicamento: " + remedio.getNome()
+            + " Código: " + remedio.getCodigo() + "\n";
+        }
+        return ResponseEntity.ok(lista);
+    } */
 
-        armario.removeMedicamento(codigo);
-    
+    @GetMapping("remove/medicamentos")
+    public void excluir(@RequestParam(name = "codigo", required = false) String codigo){
+        if(codigo != null && !codigo.trim().isEmpty()){
+            armario.removeMedicamento(codigo);
+        }
+
+        String lista = new String();
+        for (Medicamento remedio : armario.getMedicamentos()) {
+            lista += "Medicamento: " + remedio.getNome()
+            + " Código: " + remedio.getCodigo() + "\n";
+        }
+        
+        System.out.println(lista);
+        
     }
 }
