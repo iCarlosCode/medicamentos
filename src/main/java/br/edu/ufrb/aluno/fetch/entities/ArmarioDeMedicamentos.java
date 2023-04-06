@@ -31,12 +31,13 @@ public class ArmarioDeMedicamentos {
             //juntando o nome e o codigo do medicamento em uma string só
             String identificadorMedicamento = medicamento.getNome() + " " + medicamento.getCodigo();
 
-            //verificando se o identificador é ou o codigo ou o nome do medicamento
-            if(identificadorMedicamento.contains(identificador)){
+            //verificando se o identificador bate com o codigo ou o nome do medicamento
+            if(identificadorMedicamento.toLowerCase().contains(identificador.toLowerCase())){
                 medicamentosProcurados.add(medicamento);
             }
             
         }
+
         return medicamentosProcurados;
     }
 
