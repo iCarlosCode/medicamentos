@@ -9,7 +9,7 @@ function start(){
 function requestGet(){
     console.log("Função Get foi ativada")
     
-    const response = fetch("http://localhost:8081/api/armario/get/medicamentos")
+    const response = fetch("http://localhost:8082/api/armario/get/medicamentos")
     .then( function (responseData){
            return responseData.json()
     })
@@ -53,7 +53,7 @@ function requestGetSearch(event){
         requestGet();
         return;
     }
-    const response = fetch(`http://localhost:8081/api/armario/get/medicamento?nome=${searchedNome}`)
+    const response = fetch(`http://localhost:8082/api/armario/get/medicamento?nome=${searchedNome}`)
     .then( function (responseData){
            return responseData.json()
     })
@@ -111,7 +111,7 @@ function requestPOST(){
             "outrasInformacoes": formInputs[5].value
         }),
     };
-    const response = fetch("http://localhost:8081/api/armario/create/medicamento", init)
+    const response = fetch("http://localhost:8082/api/armario/create/medicamento", init)
     .then( function (responseData){
            return responseData.json()
     })
@@ -131,7 +131,7 @@ function abrirModal(medicamento) {
     var modalBody = document.querySelector('.modal-body');
     
     modalTitle.textContent = medicamento.nome;
-    modalBody.innerHTML = `<p><strong>Código:</strong> ${medicamento.codigo}</p>
+    modalBody.innerHTML = `<p><strong>Código:</strong> <span>${medicamento.codigo}</span></p>
                             <p><strong>Quantidade:</strong> ${medicamento.quantidade}</p>
                             <p><strong>Peso em gramas:</strong> ${medicamento.pesoEmGramas}</p>
                             <p><strong>Status Genérico:</strong> ${medicamento.statusGenerico}</p>
@@ -175,7 +175,7 @@ function requestPOSTFAKE(){
             "outrasInformacoes": "fake"
         }),
     };
-    const response = fetch("http://localhost:8081/api/armario/create/medicamento", init)
+    const response = fetch("http://localhost:8082/api/armario/create/medicamento", init)
     .then( function (responseData){
            return responseData.json()
     })
@@ -191,47 +191,25 @@ function requestPOSTFAKE(){
     
 }
 
-function requestDelete(){
-    clearScreen();
-    console.log("Função GetSearch foi ativada")
-    const searchedNome = event.target.value;
+function requestDelete() {
+    var modalConteudo = document.querySelector(".modal-body");
+    var modalSpanDentro = modalConteudo.querySelectorAll("span")
 
-    if(searchedNome.length == 0){
-        console.log("n tem nada na barra de pesquisa")
-        requestGet();
-        return;
-    }
-    const response = fetch(`http://localhost:8081/api/armario/get/medicamento?nome=${searchedNome}`)
-    .then( function (responseData){
-           return responseData.json()
+    fetch(`http://localhost:8082/api/armario/remove/medicamento?codigo=${modalSpanDentro[0].innerText}`, {
+      method: 'DELETE'
     })
-     .then(function(jsonData){
-        console.log(jsonData)
-            let ul = document.createElement('ul');
-            
-            ul.className = "list-group";
-            jsonData.forEach(function(medicamento) {
-                let li = document.createElement('li');
-                li.className = "list-group-item d-flex justify-content-between align-items-center";
+    .then(response => {
+      if (response.ok) {
+        console.log('Medicamento removido com sucesso!');
+        // Força a recarga da página a partir do servidor
+        location.reload(true);
 
-                let nome = document.createTextNode(medicamento.nome);
-                let codigo = document.createTextNode("Codigo do Medicamento: " + medicamento.codigo);
-                let span = document.createElement('span');
-                span.className = "badge bg-primary rounded-pill";
+      } else {
+        throw new Error('Não foi possível remover o medicamento.');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
 
-                span.appendChild(codigo);
-                li.appendChild(nome);
-                li.appendChild(span);
-                ul.appendChild(li);
-
-                li.addEventListener("click", function() {
-                    abrirModal(medicamento);
-                });
-            });
-        document.body.appendChild(ul);
-        return jsonData;
-     })
-     .catch(function(e){
-        console.log("Erro: " + e)
-     })
-}
+  }

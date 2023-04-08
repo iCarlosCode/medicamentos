@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -124,7 +125,7 @@ public class MainController {
         return ResponseEntity.ok(lista);
     } */
 
-    @GetMapping("remove/medicamentos")
+    @DeleteMapping("remove/medicamentos")
     public void excluir(@RequestParam(name = "codigo", required = false) String codigo){
         if(codigo != null && !codigo.trim().isEmpty()){
             armario.removeMedicamento(codigo);
@@ -139,4 +140,20 @@ public class MainController {
         System.out.println(lista);
         
     }
+
+    @DeleteMapping("/remove/medicamento")
+    public ResponseEntity<String> removeMedicamento(@RequestParam String codigo) {
+        for (Medicamento medicamento : armario.getMedicamentos()) {
+            System.out.println(medicamento.getCodigo());
+            System.out.println(codigo);
+            if (medicamento.getCodigo().equals(codigo)) {
+                armario.getMedicamentos().remove(medicamento);
+                return new ResponseEntity<>("Medicamento removido com sucesso.", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Medicamento não encontrado.", HttpStatus.NOT_FOUND);
+    }
+
+
+    
 }
