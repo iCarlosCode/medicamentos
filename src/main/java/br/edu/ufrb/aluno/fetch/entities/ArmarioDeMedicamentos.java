@@ -2,6 +2,7 @@ package br.edu.ufrb.aluno.fetch.entities;
 
 import java.util.ArrayList;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class ArmarioDeMedicamentos {
@@ -41,14 +42,16 @@ public class ArmarioDeMedicamentos {
         return medicamentosProcurados;
     }
 
-    public void removeMedicamento(String codigo){
+    public ResponseEntity<String> removeMedicamento(String codigo){
         for (Medicamento medicamento: this.medicamentos){
 
             if(medicamento.getCodigo().equals(codigo)){
                 this.medicamentos.remove(medicamento);
+                return new ResponseEntity<>("Medicamento removido com sucesso.", HttpStatus.OK);
             }
             
         }
+        return new ResponseEntity<>("Medicamento não encontrado.", HttpStatus.NOT_FOUND);
     }
    
 }

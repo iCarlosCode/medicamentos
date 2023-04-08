@@ -125,12 +125,9 @@ public class MainController {
         return ResponseEntity.ok(lista);
     } */
 
-    @DeleteMapping("remove/medicamentos")
-    public void excluir(@RequestParam(name = "codigo", required = false) String codigo){
-        if(codigo != null && !codigo.trim().isEmpty()){
-            armario.removeMedicamento(codigo);
-        }
 
+    @DeleteMapping("/remove/medicamento")
+    public ResponseEntity<String> removeMedicamento(@RequestParam String codigo) {
         String lista = new String();
         for (Medicamento remedio : armario.getMedicamentos()) {
             lista += "Medicamento: " + remedio.getNome()
@@ -138,20 +135,10 @@ public class MainController {
         }
         
         System.out.println(lista);
-        
-    }
 
-    @DeleteMapping("/remove/medicamento")
-    public ResponseEntity<String> removeMedicamento(@RequestParam String codigo) {
-        for (Medicamento medicamento : armario.getMedicamentos()) {
-            System.out.println(medicamento.getCodigo());
-            System.out.println(codigo);
-            if (medicamento.getCodigo().equals(codigo)) {
-                armario.getMedicamentos().remove(medicamento);
-                return new ResponseEntity<>("Medicamento removido com sucesso.", HttpStatus.OK);
-            }
-        }
-        return new ResponseEntity<>("Medicamento não encontrado.", HttpStatus.NOT_FOUND);
+        return armario.removeMedicamento(codigo);
+        
+
     }
 
 
