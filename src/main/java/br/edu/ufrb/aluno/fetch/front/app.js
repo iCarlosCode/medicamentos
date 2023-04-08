@@ -131,13 +131,13 @@ function abrirModal(medicamento) {
     var modalBody = document.querySelector('.modal-body');
     
     modalTitle.textContent = medicamento.nome;
-    modalBody.innerHTML = `<p><strong>Código:</strong> <span>${medicamento.codigo}</span></p>
-                            <p><strong>Quantidade:</strong> ${medicamento.quantidade}</p>
-                            <p><strong>Peso em gramas:</strong> ${medicamento.pesoEmGramas}</p>
-                            <p><strong>Status Genérico:</strong> ${medicamento.statusGenerico}</p>
-                            <p><strong>Status Tarja Preta:</strong> ${medicamento.statusTarjaPreta}</p>
-                            <p><strong>Fabricante:</strong> ${medicamento.fabricante}</p>
-                            <p><strong>Outras informações:</strong> ${medicamento.outrasInformacoes}</p>`;
+    modalBody.innerHTML = `<p><strong>Código:</strong> <span><input id="modal-codigo" value="${medicamento.codigo}"></span></p>
+                            <p><strong>Quantidade:</strong> <input id="modal-quantidade" value="${medicamento.quantidade}"></p>
+                            <p><strong>Peso em gramas:</strong>  <input id="modal-peso" value="${medicamento.pesoEmGramas}"></p>
+                            <p><strong>Status Genérico:</strong>  <input id="modal-generico" value="${medicamento.statusGenerico}"></p>
+                            <p><strong>Status Tarja Preta:</strong>  <input id="modal-tarja-preta" value="${medicamento.statusTarjaPreta}"></p>
+                            <p><strong>Fabricante:</strong>  <input id="modal-fabricante" value="${medicamento.fabricante}"></p>
+                            <p><strong>Outras informações:</strong>  <input id="modal-info" value="${medicamento.outrasInformacoes}"></p>`;
     
     modal.show();
 }
@@ -192,10 +192,10 @@ function requestPOSTFAKE(){
 }
 
 function requestDelete() {
-    var modalConteudo = document.querySelector(".modal-body");
-    var modalSpanDentro = modalConteudo.querySelectorAll("span")
+    //var modalConteudo = document.querySelector(".modal-body");
+    var modalSpanDentro = document.querySelector("#modal-codigo")
 
-    fetch(`http://localhost:8082/api/armario/remove/medicamento?codigo=${modalSpanDentro[0].innerText}`, {
+    fetch(`http://localhost:8082/api/armario/remove/medicamento?codigo=${modalSpanDentro.value}`, {
       method: 'DELETE'
     })
     .then(response => {
