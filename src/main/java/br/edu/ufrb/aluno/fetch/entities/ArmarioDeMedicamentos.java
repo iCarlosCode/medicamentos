@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
 
 public class ArmarioDeMedicamentos {
-    private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
+    private ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>(); //Cria uma array dos medicamentos
     
     //Getters e Setters
     public ArrayList<Medicamento> getMedicamentos() {

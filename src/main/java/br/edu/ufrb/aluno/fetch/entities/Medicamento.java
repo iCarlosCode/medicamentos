@@ -1,6 +1,7 @@
 package br.edu.ufrb.aluno.fetch.entities;
 
 public class Medicamento {
+    //Declara as variaveis privadas
     private String codigo;
     private int quantidade;
     private int pesoEmGramas;
@@ -36,7 +37,7 @@ public class Medicamento {
         
     }
     
-    @Override
+    @Override //Sobre escreve os valores
     public boolean equals(Object obj) {
         if (obj == null) return false;
         Medicamento remedio = (Medicamento) obj;

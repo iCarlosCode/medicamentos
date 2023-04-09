@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 /* ObjectMapper om = new ObjectMapper();
 Root root = om.readValue(myJsonString, Root.class); */
 public class EntradaCadastro{
+    //Declara as variaveis publicas 
     public String codigo;
     public int quantidade;
     public int pesoEmGramas;
