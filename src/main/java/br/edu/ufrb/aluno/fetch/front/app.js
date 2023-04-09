@@ -1,4 +1,4 @@
-
+var codigoAntigo;
 
 
 function start(){
@@ -140,6 +140,9 @@ function abrirModal(medicamento) {
                             <p><strong>Outras informações:</strong>  <input id="modal-info" value="${medicamento.outrasInformacoes}"></p>`;
     
     modal.show();
+    codigoAntigo = codigoAntigoMedicamento();
+
+    
 }
 
 
@@ -195,6 +198,7 @@ function requestDelete() {
     //var modalConteudo = document.querySelector(".modal-body");
     var modalSpanDentro = document.querySelector("#modal-codigo")
 
+    //pegando o codigo do medicamento para buscar e deletar
     fetch(`http://localhost:8082/api/armario/remove/medicamento?codigo=${modalSpanDentro.value}`, {
       method: 'DELETE'
     })
@@ -213,3 +217,37 @@ function requestDelete() {
     });
 
   }
+
+
+function requestPatch(){
+    codigoNovo = document.querySelector("#modal-codigo").value
+    var quantidade = document.querySelector("#modal-quantidade").value
+    var peso = document.querySelector("#modal-peso").value
+    var generico = document.querySelector("#modal-generico").value
+    var tarjaPreta = document.querySelector("#modal-tarja-preta").value
+    var nome = document.querySelector(".modal-title").value
+    var fabricante = document.querySelector("#modal-fabricante").value
+    var info = document.querySelector("#modal-info").value
+
+    fetch(`http://localhost:8082/api/armario/edit/medicamento?codigoAntigo=${codigoAntigo}&codigoNovo=${codigoNovo}&quantidade=${quantidade}&peso=${peso}&generico=${generico}&nome=${nome}&tarjaPreta=${tarjaPreta}&fabricante=${fabricante}&info=${info}`, 
+    {
+      method: 'PATCH'
+    })
+    .then(response => {
+      if (response.ok) {
+        console.log('Medicamento editado com sucesso!');
+        // Força a recarga da página a partir do servidor
+        location.reload(true);
+
+      } else {
+        throw new Error('Não foi possível editar o medicamento.');
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
+
+function codigoAntigoMedicamento(){
+    return document.querySelector("#modal-codigo").value
+}

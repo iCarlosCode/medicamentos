@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -141,6 +142,17 @@ public class MainController {
 
     }
 
-
+    @PatchMapping("/edit/medicamento")
+    public ResponseEntity<String> editMedicamento(@RequestParam String codigoAntigo, @RequestParam String codigoNovo, 
+    @RequestParam String quantidade,
+    @RequestParam String peso,
+    @RequestParam String generico,
+    @RequestParam String tarjaPreta,
+    @RequestParam String nome,
+    @RequestBody String fabricante,
+    @RequestBody String info){
+        System.out.println("bagacei");
+        return armario.editMedicamento(codigoAntigo, codigoNovo, Integer.parseInt(quantidade), Integer.parseInt(peso), Boolean.parseBoolean(generico), Boolean.parseBoolean(tarjaPreta), nome, fabricante, info);
+    }
     
 }

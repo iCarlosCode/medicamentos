@@ -54,4 +54,31 @@ public class ArmarioDeMedicamentos {
         return new ResponseEntity<>("Medicamento não encontrado.", HttpStatus.NOT_FOUND);
     }
    
+    public ResponseEntity<String> editMedicamento(String codigoAntigo, String codigoNovo, int quantidade, int peso, boolean generico, boolean tarjaPreta, String nome, String fabricante, String info){
+        /*codigo, 
+    int quantidade, 
+    int pesoEmGramas,
+    boolean statusGenerico, 
+    boolean statusTarjaPreta,
+    String nome, 
+    String fabricante, 
+    String outrasInformacoes */
+        Medicamento medicamentoEditado = new Medicamento(codigoNovo, 
+        quantidade, 
+        peso,
+        generico, 
+        tarjaPreta, 
+        nome, 
+        fabricante, 
+        info);
+
+        for(int i = 0; i < this.medicamentos.size(); i++){
+            if(this.medicamentos.get(i).getCodigo().equals(codigoAntigo)){
+                System.out.println("entrei no if");
+                this.medicamentos.set(i, medicamentoEditado);
+                return new ResponseEntity<>("Medicamento editado com sucesso.", HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>("Medicamento não editado.", HttpStatus.NOT_FOUND);
+    }
 }
