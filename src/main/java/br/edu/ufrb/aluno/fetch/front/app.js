@@ -5,10 +5,10 @@ var codigoAntigo;
 function start(){
     clearScreen();
     requestGet();
-    console.log("start ativada");
+    //console.log("start ativada");
 }
 function requestGet(){
-    console.log("Função Get foi ativada")
+    //console.log("Função Get foi ativada")
     
     const response = fetch("http://localhost:8082/api/armario/get/medicamentos")
     .then( function (responseData){
@@ -18,6 +18,7 @@ function requestGet(){
         console.log(jsonData)
             let ul = document.createElement('ul');
             ul.className = "list-group";
+            
             jsonData.forEach(function(medicamento) {
                 let li = document.createElement('li');
                 li.className = "list-group-item d-flex justify-content-between align-items-center";
@@ -46,11 +47,11 @@ function requestGet(){
 
 function requestGetSearch(event){
     clearScreen();
-    console.log("Função GetSearch foi ativada")
+    //console.log("Função GetSearch foi ativada")
     const searchedNome = event.target.value;
 
     if(searchedNome.length == 0){
-        console.log("n tem nada na barra de pesquisa")
+        //console.log("n tem nada na barra de pesquisa")
         requestGet();
         return;
     }
@@ -59,7 +60,7 @@ function requestGetSearch(event){
            return responseData.json()
     })
      .then(function(jsonData){
-        console.log(jsonData)
+        //console.log(jsonData)
             let ul = document.createElement('ul');
             
             ul.className = "list-group";
@@ -91,9 +92,9 @@ function requestGetSearch(event){
 
 function requestPOST(){
     var formInputs = document.querySelectorAll("#form-cadastro input");
-    console.log(formInputs[3].checked)
+    //console.log(formInputs[3].checked)
 
-    console.log("Função POST foi ativada")
+    //console.log("Função POST foi ativada")
     const headers = {
         "Content-Type": "application/json",
         "Testando": "Teste"
@@ -136,7 +137,7 @@ function abrirModal(medicamento) {
         isGeneric = "checked"
     }
     if(medicamento.statusTarjaPreta){
-        isTarjaPreta = "cheked"
+        isTarjaPreta = "checked"
     }
     modalTitle.textContent = medicamento.nome;
     modalBody.innerHTML = ` <p><strong>Nome:</strong> <span><input id="modal-nome" value="${medicamento.nome}"></span></p>
@@ -168,7 +169,7 @@ function requestPOSTFAKE(){
     
         const randomNum = Math.floor(Math.random() * 1000); // gera um número aleatório entre 0 e 999
 
-    console.log("Função POST FAKE foi ativada")
+    //console.log("Função POST FAKE foi ativada")
     const headers = {
         "Content-Type": "application/json",
         "Testando": "Teste"
@@ -203,23 +204,6 @@ function requestPOSTFAKE(){
     
 }
 
-/* function requestDeleteConfirm() {
-    var modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-    var modalTitle = document.querySelector('.modal-title');
-    var modalBody = document.querySelector('.modal-body');
-    
-    modalTitle.textContent = medicamento.nome;
-    modalBody.innerHTML = `<p><strong>Código:</strong> <span><input id="modal-codigo" value="${medicamento.codigo}"></span></p>
-                            <p><strong>Quantidade:</strong> <input id="modal-quantidade" value="${medicamento.quantidade}"></p>
-                            <p><strong>Peso em gramas:</strong>  <input id="modal-peso" value="${medicamento.pesoEmGramas}"></p>
-                            <p><strong>Status Genérico:</strong>  <input id="modal-generico" value="${medicamento.statusGenerico}"></p>
-                            <p><strong>Status Tarja Preta:</strong>  <input id="modal-tarja-preta" value="${medicamento.statusTarjaPreta}"></p>
-                            <p><strong>Fabricante:</strong>  <input id="modal-fabricante" value="${medicamento.fabricante}"></p>
-                            <p><strong>Outras informações:</strong>  <input id="modal-info" value="${medicamento.outrasInformacoes}"></p>`;
-    
-    modal.show();
-} */
-
 function requestDelete() {
     //var modalConteudo = document.querySelector(".modal-body");
     var modalSpanDentro = document.querySelector("#modal-codigo")
@@ -230,7 +214,7 @@ function requestDelete() {
     })
     .then(response => {
       if (response.ok) {
-        console.log('Medicamento removido com sucesso!');
+        //console.log('Medicamento removido com sucesso!');
         // Força a recarga da página a partir do servidor
         location.reload(true);
 
@@ -253,7 +237,7 @@ function requestPatch(){
     var quantidade = document.querySelector("#modal-quantidade").value
     var peso = document.querySelector("#modal-peso").value
     var generico = document.querySelector("#modal-generico").checked
-    var tarjaPreta = document.querySelector("#modal-tarja-preta").cheked
+    var tarjaPreta = document.querySelector("#modal-tarja-preta").checked
     var nome = document.querySelector("#modal-nome").value
     var fabricante = document.querySelector("#modal-fabricante").value
     var info = document.querySelector("#modal-info").value

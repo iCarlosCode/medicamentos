@@ -15,14 +15,14 @@ public class ArmarioDeMedicamentos {
     }
 
     public ResponseEntity<String> setMedicamentos(Medicamento placebo) {
-        /*ATIVE ANTES DE ENVIAR PARA O PROFESSOR 
-        if(placebo.getQuantidade() > 0 && placebo.getPesoEmGramas() > 0 && !placebo.getNome().isEmpty() && !placebo.getFabricante().isEmpty()){*/
+        
+        if(placebo.getQuantidade() > 0 && placebo.getPesoEmGramas() > 0 && !placebo.getNome().isEmpty() && !placebo.getFabricante().isEmpty()){
             this.medicamentos.add(placebo);
             return ResponseEntity.ok("ok");
-        /*}
+        }
     
         
-        throw new IllegalArgumentException("temos um parametro invalido");*/
+        throw new IllegalArgumentException("temos um parametro invalido");
     }
     
     public ArrayList<Medicamento> searchMedicamento(String identificador){
@@ -74,7 +74,7 @@ public class ArmarioDeMedicamentos {
 
         for(int i = 0; i < this.medicamentos.size(); i++){
             if(this.medicamentos.get(i).getCodigo().equals(codigoAntigo)){
-                System.out.println("entrei no if");
+                //System.out.println("entrei no if");
                 this.medicamentos.set(i, medicamentoEditado);
                 return new ResponseEntity<>("Medicamento editado com sucesso.", HttpStatus.OK);
             }

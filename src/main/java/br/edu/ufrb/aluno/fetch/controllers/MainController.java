@@ -42,7 +42,7 @@ public class MainController {
     @GetMapping("/get/medicamento")
     public ArrayList<Medicamento> getSearchMedicamento(@RequestParam String nome) {
        // armario.setMedicamentos(medicamento);
-        System.out.println(armario.searchMedicamento(nome));
+        //System.out.println(armario.searchMedicamento(nome));
 
         return armario.searchMedicamento(nome);
     } 
@@ -84,7 +84,7 @@ public class MainController {
                     boolean jaExiste = false;
                     //Passeando por todos os medicamentos no armario
                     for (Medicamento remedio : armario.getMedicamentos()) {
-                        System.out.println("Medicamento: " + remedio.getNome());
+                       // System.out.println("Medicamento: " + remedio.getNome());
     
                         //Verificando se já tem um remedio igual ao que vc está querendo cadastrar
                          if(remedio.equals(medicamentoNovo)){
@@ -110,7 +110,7 @@ public class MainController {
                     
         }catch(Exception e){
             e.printStackTrace();
-            System.out.println("Deu erro pae");
+            //System.out.println("Deu erro pae");
         }
         
     }
@@ -135,7 +135,7 @@ public class MainController {
             + " Código: " + remedio.getCodigo() + "\n";
         }
         
-        System.out.println(lista);
+        //System.out.println(lista);
 
         return armario.removeMedicamento(codigo);
         
@@ -152,8 +152,8 @@ public class MainController {
     @RequestParam String fabricante,
     @RequestParam String info){
 
-        System.out.println("generico: " + generico);
-        System.out.println("tarjapreta: " + tarjaPreta);
+        //System.out.println("generico: " + generico);
+        //System.out.println("tarjapreta: " + tarjaPreta);
         return armario.editMedicamento(codigoAntigo, codigoNovo, Integer.parseInt(quantidade), Integer.parseInt(peso), Boolean.parseBoolean(generico), Boolean.parseBoolean(tarjaPreta), nome, fabricante, info); 
 
     }

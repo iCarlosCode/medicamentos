@@ -10,7 +10,7 @@
 </head>
 <body onload="start()">
 
-    <nav class="navbar navbar-light bg-light fixed-top">
+    <nav id="navBar" class="navbar navbar-light bg-light fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Armario de Medicamentos</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -24,7 +24,9 @@
             </div>
             <div class="offcanvas-body">
                 <form id="form-cadastro" action="" method="post">
-                    <button onclick="requestPOSTFAKE()">Estoque FAKE</button>
+                    <!--
+                        <button onclick="requestPOSTFAKE()">Estoque FAKE</button>
+                    -->
                     <label for="nome" required>Nome:</label>
                     <input id="nome" type="text">
             
