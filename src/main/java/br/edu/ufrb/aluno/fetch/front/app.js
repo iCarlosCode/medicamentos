@@ -191,6 +191,23 @@ function requestPOSTFAKE(){
     
 }
 
+/* function requestDeleteConfirm() {
+    var modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+    var modalTitle = document.querySelector('.modal-title');
+    var modalBody = document.querySelector('.modal-body');
+    
+    modalTitle.textContent = medicamento.nome;
+    modalBody.innerHTML = `<p><strong>Código:</strong> <span><input id="modal-codigo" value="${medicamento.codigo}"></span></p>
+                            <p><strong>Quantidade:</strong> <input id="modal-quantidade" value="${medicamento.quantidade}"></p>
+                            <p><strong>Peso em gramas:</strong>  <input id="modal-peso" value="${medicamento.pesoEmGramas}"></p>
+                            <p><strong>Status Genérico:</strong>  <input id="modal-generico" value="${medicamento.statusGenerico}"></p>
+                            <p><strong>Status Tarja Preta:</strong>  <input id="modal-tarja-preta" value="${medicamento.statusTarjaPreta}"></p>
+                            <p><strong>Fabricante:</strong>  <input id="modal-fabricante" value="${medicamento.fabricante}"></p>
+                            <p><strong>Outras informações:</strong>  <input id="modal-info" value="${medicamento.outrasInformacoes}"></p>`;
+    
+    modal.show();
+} */
+
 function requestDelete() {
     //var modalConteudo = document.querySelector(".modal-body");
     var modalSpanDentro = document.querySelector("#modal-codigo")
