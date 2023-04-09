@@ -1,6 +1,7 @@
 package br.edu.ufrb.aluno.fetch.entities;
 
 public class Medicamento {
+    //Declaração das atributos privados
     private String codigo;
     private int quantidade;
     private int pesoEmGramas;
@@ -14,7 +15,7 @@ public class Medicamento {
     
     
 
-
+    //Construtor.
     public Medicamento(String codigo, 
     int quantidade, 
     int pesoEmGramas,
@@ -38,10 +39,11 @@ public class Medicamento {
     
     
 
-    @Override
+    @Override // Sobrescrevendo o método equals.
     public boolean equals(Object obj) {
         if (obj == null) return false;
         Medicamento remedio = (Medicamento) obj;
+        //Cmparando com base no peso,status,nome, fabricante e outras informações.
         return  
                 this.pesoEmGramas == remedio.pesoEmGramas &&
                 this.statusGenerico == remedio.statusGenerico &&

@@ -16,12 +16,13 @@ public class ArmarioDeMedicamentos {
 
     public ResponseEntity<String> setMedicamentos(Medicamento placebo) {
         
+        //Restiçoes de para adicionar o medicamento.
         if(placebo.getQuantidade() > 0 && placebo.getPesoEmGramas() > 0 && !placebo.getNome().isEmpty() && !placebo.getFabricante().isEmpty()){
-            this.medicamentos.add(placebo);
+            this.medicamentos.add(placebo); 
             return ResponseEntity.ok("ok");
         }
     
-        
+        //Caso quebre as restrições lanca-se uma exceção.
         throw new IllegalArgumentException("temos um parametro invalido");
     }
     
@@ -41,11 +42,13 @@ public class ArmarioDeMedicamentos {
 
         return medicamentosProcurados;
     }
-
+    //Remoção do medicamento
     public ResponseEntity<String> removeMedicamento(String codigo){
+        //Iterando por cada medicamento no armario
         for (Medicamento medicamento: this.medicamentos){
 
             if(medicamento.getCodigo().equals(codigo)){
+                //Caso o codigo seja igual ao fornecido remova o medicamento.
                 this.medicamentos.remove(medicamento);
                 return new ResponseEntity<>("Medicamento removido com sucesso.", HttpStatus.OK);
             }
@@ -55,14 +58,7 @@ public class ArmarioDeMedicamentos {
     }
    
     public ResponseEntity<String> editMedicamento(String codigoAntigo, String codigoNovo, int quantidade, int peso, boolean generico, boolean tarjaPreta, String nome, String fabricante, String info){
-        /*codigo, 
-    int quantidade, 
-    int pesoEmGramas,
-    boolean statusGenerico, 
-    boolean statusTarjaPreta,
-    String nome, 
-    String fabricante, 
-    String outrasInformacoes */
+        //Crie um medicamento auxiliar 
         Medicamento medicamentoEditado = new Medicamento(codigoNovo, 
         quantidade, 
         peso,
@@ -73,8 +69,9 @@ public class ArmarioDeMedicamentos {
         info);
 
         for(int i = 0; i < this.medicamentos.size(); i++){
+            //Compara com os já existentes com base no código.
             if(this.medicamentos.get(i).getCodigo().equals(codigoAntigo)){
-                //System.out.println("entrei no if");
+                //Editando o medicamento. (Trocando o antigo pelo novo)
                 this.medicamentos.set(i, medicamentoEditado);
                 return new ResponseEntity<>("Medicamento editado com sucesso.", HttpStatus.OK);
             }

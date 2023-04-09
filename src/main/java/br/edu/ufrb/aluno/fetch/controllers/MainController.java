@@ -27,10 +27,10 @@ import br.edu.ufrb.aluno.fetch.entities.EntradaCadastro;
 */
 @RestController
 @RequestMapping("api/armario")
-public class MainController {
+public class MainController { //Crie um novo armario
     ArmarioDeMedicamentos armario = new ArmarioDeMedicamentos();
     
-    int nextID = 0;
+    int nextID = 0; //Auxilia na criação do codigo dos medicamentos.
 
     //Pegue todos os medicamentos do armario
     @GetMapping("/get/medicamentos")
@@ -42,9 +42,9 @@ public class MainController {
     @GetMapping("/get/medicamento")
     public ArrayList<Medicamento> getSearchMedicamento(@RequestParam String nome) {
        // armario.setMedicamentos(medicamento);
-        //System.out.println(armario.searchMedicamento(nome));
+        //System.out.println(armario.searchMedicamento(nome)); 
 
-        return armario.searchMedicamento(nome);
+        return armario.searchMedicamento(nome); //Pesquise pelo medicamento
     } 
 
     //Crie um novo medicamento
@@ -58,7 +58,7 @@ public class MainController {
             ObjectMapper mapper = new ObjectMapper();
             EntradaCadastro entradaCadastro = mapper.readValue(json, EntradaCadastro.class);
 
-            Medicamento medicamentoNovo = new Medicamento(
+            Medicamento medicamentoNovo = new Medicamento( //pegue os atributos da entrada cadastro e crie um novo medicamento. 
                 entradaCadastro.generateId(entradaCadastro.getNome(), nextID),
                 entradaCadastro.getQuantidade(), 
                 entradaCadastro.getPesoEmGramas(),

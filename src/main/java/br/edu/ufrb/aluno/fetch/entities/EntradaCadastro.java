@@ -5,7 +5,10 @@ package br.edu.ufrb.aluno.fetch.entities;
 import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 /* ObjectMapper om = new ObjectMapper();
 Root root = om.readValue(myJsonString, Root.class); */
+
+//Auxilia Conversão de JSON para POJO.
 public class EntradaCadastro{
+    //Declaração das variaveis publicas
     public String codigo;
     public int quantidade;
     public int pesoEmGramas;
