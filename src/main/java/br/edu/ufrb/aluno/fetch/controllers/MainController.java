@@ -151,7 +151,9 @@ public class MainController {
     @RequestParam String nome,
     @RequestParam String fabricante,
     @RequestParam String info){
-        System.out.println("bagacei");
+
+        System.out.println("generico: " + generico);
+        System.out.println("tarjapreta: " + tarjaPreta);
         return armario.editMedicamento(codigoAntigo, codigoNovo, Integer.parseInt(quantidade), Integer.parseInt(peso), Boolean.parseBoolean(generico), Boolean.parseBoolean(tarjaPreta), nome, fabricante, info); 
 
     }

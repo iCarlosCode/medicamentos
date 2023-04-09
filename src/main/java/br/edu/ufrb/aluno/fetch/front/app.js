@@ -130,14 +130,21 @@ function abrirModal(medicamento) {
     var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
     var modalTitle = document.querySelector('.modal-title');
     var modalBody = document.querySelector('.modal-body');
-    
+    var isGeneric = ""
+    var isTarjaPreta = ""
+    if(medicamento.statusGenerico){
+        isGeneric = "checked"
+    }
+    if(medicamento.statusTarjaPreta){
+        isTarjaPreta = "cheked"
+    }
     modalTitle.textContent = medicamento.nome;
     modalBody.innerHTML = ` <p><strong>Nome:</strong> <span><input id="modal-nome" value="${medicamento.nome}"></span></p>
                             <p><strong>Código:</strong> <span><input id="modal-codigo" value="${medicamento.codigo}"></span></p>
                             <p><strong>Quantidade:</strong> <input id="modal-quantidade" value="${medicamento.quantidade}"></p>
                             <p><strong>Peso em gramas:</strong>  <input id="modal-peso" value="${medicamento.pesoEmGramas}"></p>
-                            <p><strong>Status Genérico:</strong>  <input id="modal-generico" value="${medicamento.statusGenerico}"></p>
-                            <p><strong>Status Tarja Preta:</strong>  <input id="modal-tarja-preta" value="${medicamento.statusTarjaPreta}"></p>
+                            <p><strong>Status Genérico:</strong>  <input id="modal-generico" type="checkbox" value="" ${isGeneric}></p>
+                            <p><strong>Status Tarja Preta:</strong>  <input id="modal-tarja-preta" type="checkbox" value="" ${isTarjaPreta}></p>
                             <p><strong>Fabricante:</strong>  <input id="modal-fabricante" value="${medicamento.fabricante}"></p>
                             <p><strong>Outras informações:</strong>  <input id="modal-info" value="${medicamento.outrasInformacoes}"></p>`;
     
@@ -245,11 +252,12 @@ function requestPatch(){
     codigoNovo = document.querySelector("#modal-codigo").value
     var quantidade = document.querySelector("#modal-quantidade").value
     var peso = document.querySelector("#modal-peso").value
-    var generico = document.querySelector("#modal-generico").value
-    var tarjaPreta = document.querySelector("#modal-tarja-preta").value
+    var generico = document.querySelector("#modal-generico").checked
+    var tarjaPreta = document.querySelector("#modal-tarja-preta").cheked
     var nome = document.querySelector("#modal-nome").value
     var fabricante = document.querySelector("#modal-fabricante").value
     var info = document.querySelector("#modal-info").value
+
 
     //API FETCH, envia todas as informações para o BACKEND
     //Usamos nela o formato QueryString (sequencia de atributos após ? e separadas por &)
