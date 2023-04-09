@@ -105,5 +105,27 @@ public class Medicamento {
         this.outrasInformacoes = outrasInformacoes;
     }
 
-    
+    /* @Override
+    public String toString() {
+        String info = "Nome: " + this.nome +
+               "\nCódigo: " + this.codigo +
+               "\nPeso(gramas): " + this.pesoEmGramas +
+               "\nFabricante: " + this.fabricante +
+               "\nQuantidade: " + this.quantidade;
+
+                if(this.statusGenerico){
+                    info += "\nMedicamento genérico";
+                } else {
+                    info += "\nMedicamento não genérico";
+                }
+
+                if(this.statusTarjaPreta){
+                    info += "\nMedicamento tarja preta";
+                } else {
+                    info += "\nMedicamento sem tarja preta";
+                }
+
+                info += "\nOutras informações: " + this.outrasInformacoes;
+        return info;
+    } */
 }
