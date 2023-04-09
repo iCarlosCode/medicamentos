@@ -149,10 +149,11 @@ public class MainController {
     @RequestParam String generico,
     @RequestParam String tarjaPreta,
     @RequestParam String nome,
-    @RequestBody String fabricante,
-    @RequestBody String info){
+    @RequestParam String fabricante,
+    @RequestParam String info){
         System.out.println("bagacei");
-        return armario.editMedicamento(codigoAntigo, codigoNovo, Integer.parseInt(quantidade), Integer.parseInt(peso), Boolean.parseBoolean(generico), Boolean.parseBoolean(tarjaPreta), nome, fabricante, info);
+        return armario.editMedicamento(codigoAntigo, codigoNovo, Integer.parseInt(quantidade), Integer.parseInt(peso), Boolean.parseBoolean(generico), Boolean.parseBoolean(tarjaPreta), nome, fabricante, info); 
+
     }
     
 }

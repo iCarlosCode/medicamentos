@@ -1,3 +1,4 @@
+//Essa variavel guarda o código antigo do medicamento antes do medicamento ser ditado
 var codigoAntigo;
 
 
@@ -131,7 +132,8 @@ function abrirModal(medicamento) {
     var modalBody = document.querySelector('.modal-body');
     
     modalTitle.textContent = medicamento.nome;
-    modalBody.innerHTML = `<p><strong>Código:</strong> <span><input id="modal-codigo" value="${medicamento.codigo}"></span></p>
+    modalBody.innerHTML = ` <p><strong>Nome:</strong> <span><input id="modal-nome" value="${medicamento.nome}"></span></p>
+                            <p><strong>Código:</strong> <span><input id="modal-codigo" value="${medicamento.codigo}"></span></p>
                             <p><strong>Quantidade:</strong> <input id="modal-quantidade" value="${medicamento.quantidade}"></p>
                             <p><strong>Peso em gramas:</strong>  <input id="modal-peso" value="${medicamento.pesoEmGramas}"></p>
                             <p><strong>Status Genérico:</strong>  <input id="modal-generico" value="${medicamento.statusGenerico}"></p>
@@ -235,36 +237,37 @@ function requestDelete() {
 
   }
 
-
+//Essa função pega todas as informações do medicamento que deseja ser editado,
+//e envia para o bakend editar, salvar e reenviar as informações.
 function requestPatch(){
+
+    //Pegando todas as informações do medicamento a ser editado
     codigoNovo = document.querySelector("#modal-codigo").value
     var quantidade = document.querySelector("#modal-quantidade").value
     var peso = document.querySelector("#modal-peso").value
     var generico = document.querySelector("#modal-generico").value
     var tarjaPreta = document.querySelector("#modal-tarja-preta").value
-    var nome = document.querySelector(".modal-title").value
+    var nome = document.querySelector("#modal-nome").value
     var fabricante = document.querySelector("#modal-fabricante").value
     var info = document.querySelector("#modal-info").value
 
-    fetch(`http://localhost:8082/api/armario/edit/medicamento?codigoAntigo=${codigoAntigo}&codigoNovo=${codigoNovo}&quantidade=${quantidade}&peso=${peso}&generico=${generico}&nome=${nome}&tarjaPreta=${tarjaPreta}&fabricante=${fabricante}&info=${info}`, 
+    //API FETCH, envia todas as informações para o BACKEND
+    //Usamos nela o formato QueryString (sequencia de atributos após ? e separadas por &)
+    fetch(`http://localhost:8082/api/armario/edit/medicamento?codigoAntigo=${codigoAntigo}&codigoNovo=${codigoNovo}&quantidade=${quantidade}&peso=${peso}&generico=${generico}&tarjaPreta=${tarjaPreta}&nome=${nome}&fabricante=${fabricante}&info=${info}`, 
     {
-      method: 'PATCH'
+        //verbo HTTP
+        method: 'PATCH'
     })
     .then(response => {
-      if (response.ok) {
-        console.log('Medicamento editado com sucesso!');
-        // Força a recarga da página a partir do servidor
+        //Atualizando a página após enviar os dados (o true significa que atualizamos a página a partir dos dados do servidor)
         location.reload(true);
-
-      } else {
-        throw new Error('Não foi possível editar o medicamento.');
-      }
     })
     .catch(error => {
       console.log(error);
     });
 }
 
+//Essa função salva código antigo do medicamento antes de o Medicamento ser editado
 function codigoAntigoMedicamento(){
     return document.querySelector("#modal-codigo").value
 }
