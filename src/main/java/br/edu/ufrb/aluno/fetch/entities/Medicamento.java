@@ -32,10 +32,7 @@ public class Medicamento {
             this.statusTarjaPreta = statusTarjaPreta;
             this.nome = nome;
             this.fabricante = fabricante;
-            this.outrasInformacoes = outrasInformacoes;
-
-        
-        
+            this.outrasInformacoes = outrasInformacoes;        
     }
     
     

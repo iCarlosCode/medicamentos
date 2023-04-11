@@ -49,10 +49,8 @@ public class MainController { //Crie um novo armario
 
     //Crie um novo medicamento
     @PostMapping("/create/medicamento") //Rota para criar um medicamento.
-    public void put(@RequestBody String medicamentoACadastrar) {
-        
+    public void put(@RequestBody String medicamentoACadastrar) {      
         String json = medicamentoACadastrar;
-        
         
         try{
             ObjectMapper mapper = new ObjectMapper();
@@ -68,15 +66,11 @@ public class MainController { //Crie um novo armario
                 entradaCadastro.getFabricante(),
                 entradaCadastro.getOutrasInformacoes());
 
-                
-                
                 //Adicionando o primeiro medicamento
                 if(armario.getMedicamentos().size() < 1){
 
                     armario.setMedicamentos(medicamentoNovo);
                     nextID++;
-
-                
                 }
                 //adicionando os demais medicamentos
                 else{
@@ -134,12 +128,8 @@ public class MainController { //Crie um novo armario
             lista += "Medicamento: " + remedio.getNome()
             + " Código: " + remedio.getCodigo() + "\n";
         }
-        
         //System.out.println(lista);
-
         return armario.removeMedicamento(codigo);
-        
-
     }
 
     @PatchMapping("/edit/medicamento")
@@ -152,10 +142,6 @@ public class MainController { //Crie um novo armario
     @RequestParam String fabricante,
     @RequestParam String info){
 
-        //System.out.println("generico: " + generico);
-        //System.out.println("tarjapreta: " + tarjaPreta);
         return armario.editMedicamento(codigoAntigo, codigoNovo, Integer.parseInt(quantidade), Integer.parseInt(peso), Boolean.parseBoolean(generico), Boolean.parseBoolean(tarjaPreta), nome, fabricante, info); 
-
-    }
-    
+    }   
 }

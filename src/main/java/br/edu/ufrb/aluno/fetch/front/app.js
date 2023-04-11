@@ -5,10 +5,8 @@ var codigoAntigo;
 function start(){
     clearScreen();
     requestGet();
-    //console.log("start ativada");
 }
 function requestGet(){
-    //console.log("Função Get foi ativada")
     
     const response = fetch("http://localhost:8082/api/armario/get/medicamentos")
     .then( function (responseData){
@@ -92,9 +90,7 @@ function requestGetSearch(event){
 
 function requestPOST(){
     var formInputs = document.querySelectorAll("#form-cadastro input");
-    //console.log(formInputs[3].checked)
 
-    //console.log("Função POST foi ativada")
     const headers = {
         "Content-Type": "application/json",
         "Testando": "Teste"
@@ -119,7 +115,6 @@ function requestPOST(){
     })
      .then(function(jsonData){
         console.log(jsonData)
-        
         return jsonData;
      })
      .catch(function(e){
@@ -217,7 +212,6 @@ function requestDelete() {
         //console.log('Medicamento removido com sucesso!');
         // Força a recarga da página a partir do servidor
         location.reload(true);
-
       } else {
         throw new Error('Não foi possível remover o medicamento.');
       }
@@ -225,13 +219,11 @@ function requestDelete() {
     .catch(error => {
       console.error(error);
     });
-
   }
 
 //Essa função pega todas as informações do medicamento que deseja ser editado,
 //e envia para o bakend editar, salvar e reenviar as informações.
 function requestPatch(){
-
     //Pegando todas as informações do medicamento a ser editado
     codigoNovo = document.querySelector("#modal-codigo").value
     var quantidade = document.querySelector("#modal-quantidade").value
@@ -241,7 +233,6 @@ function requestPatch(){
     var nome = document.querySelector("#modal-nome").value
     var fabricante = document.querySelector("#modal-fabricante").value
     var info = document.querySelector("#modal-info").value
-
 
     //API FETCH, envia todas as informações para o BACKEND
     //Usamos nela o formato QueryString (sequencia de atributos após ? e separadas por &)
