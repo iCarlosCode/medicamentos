@@ -1,5 +1,5 @@
 package br.edu.ufrb.aluno.fetch.entities;
-
+//Pnde fica os métodos
 import java.util.ArrayList;
 
 import org.springframework.http.HttpStatus;
@@ -28,13 +28,13 @@ public class ArmarioDeMedicamentos {
     
     public ArrayList<Medicamento> searchMedicamento(String identificador){
         ArrayList<Medicamento> medicamentosProcurados = new ArrayList<Medicamento>();
-        for (Medicamento medicamento: this.medicamentos){
+        for (Medicamento medicamento: this.medicamentos){// for varre o array de medicamentos, um a um e se contem a string ele adiciona no array de medicamentos procurados.
 
             //juntando o nome e o codigo do medicamento em uma string só
             String identificadorMedicamento = medicamento.getNome() + " " + medicamento.getCodigo();
 
             //verificando se o identificador bate com o codigo ou o nome do medicamento
-            if(identificadorMedicamento.toLowerCase().contains(identificador.toLowerCase())){
+            if(identificadorMedicamento.toLowerCase().contains(identificador.toLowerCase())){ //Contais recebe a string(Nome ou codigo) e procura no array.
                 medicamentosProcurados.add(medicamento);
             }
             
@@ -45,7 +45,7 @@ public class ArmarioDeMedicamentos {
     //Remoção do medicamento
     public ResponseEntity<String> removeMedicamento(String codigo){
         //Iterando por cada medicamento no armario
-        for (Medicamento medicamento: this.medicamentos){
+        for (Medicamento medicamento: this.medicamentos){//Lê o array principal dos medicamentos
 
             if(medicamento.getCodigo().equals(codigo)){
                 //Caso o codigo seja igual ao fornecido remova o medicamento.
@@ -56,7 +56,7 @@ public class ArmarioDeMedicamentos {
         }
         return new ResponseEntity<>("Medicamento não encontrado.", HttpStatus.NOT_FOUND);
     }
-   
+    //Lê os atributos do novo medicamento e susbstitui um a um do antigo medicamento.
     public ResponseEntity<String> editMedicamento(String codigoAntigo, String codigoNovo, int quantidade, int peso, boolean generico, boolean tarjaPreta, String nome, String fabricante, String info){
         //Crie um medicamento auxiliar 
         Medicamento medicamentoEditado = new Medicamento(codigoNovo, 

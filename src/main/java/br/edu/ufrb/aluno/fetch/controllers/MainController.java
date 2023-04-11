@@ -28,11 +28,11 @@ import br.edu.ufrb.aluno.fetch.entities.EntradaCadastro;
 @RestController
 @RequestMapping("api/armario")
 public class MainController { //Crie um novo armario
-    ArmarioDeMedicamentos armario = new ArmarioDeMedicamentos();
+    ArmarioDeMedicamentos armario = new ArmarioDeMedicamentos(); //Cria um array vazio no armario, onde se coloca, edita e retira medicamentos.
     
-    int nextID = 0; //Auxilia na criação do codigo dos medicamentos.
+    int nextID = 0; //Auxilia na criação do codigo dos medicamentos. (Contador)
 
-    //Pegue todos os medicamentos do armario
+    //Pegue todos os medicamentos do armario e exibe na tela.
     @GetMapping("/get/medicamentos")
     public ArrayList<Medicamento> getMedicamentos() {
        // armario.setMedicamentos(medicamento);
@@ -40,15 +40,15 @@ public class MainController { //Crie um novo armario
     }
 
     @GetMapping("/get/medicamento")
-    public ArrayList<Medicamento> getSearchMedicamento(@RequestParam String nome) {
+    public ArrayList<Medicamento> getSearchMedicamento(@RequestParam String nome) { //RequestParam = Parametro que voce quer receber, nesse caso uma string.
        // armario.setMedicamentos(medicamento);
         //System.out.println(armario.searchMedicamento(nome)); 
 
-        return armario.searchMedicamento(nome); //Pesquise pelo medicamento
+        return armario.searchMedicamento(nome); //Pesquise pelo medicamento por letra(string) ou por código
     } 
 
     //Crie um novo medicamento
-    @PostMapping("/create/medicamento")
+    @PostMapping("/create/medicamento") //Rota para criar um medicamento.
     public void put(@RequestBody String medicamentoACadastrar) {
         
         String json = medicamentoACadastrar;

@@ -1,5 +1,5 @@
 package br.edu.ufrb.aluno.fetch.entities;
-
+//Onde fica os atributos
 // import com.fasterxml.jackson.databind.ObjectMapper;
  // version 2.11.1
 import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
@@ -8,7 +8,7 @@ Root root = om.readValue(myJsonString, Root.class); */
 
 //Auxilia Conversão de JSON para POJO.
 public class EntradaCadastro{
-    //Declaração das variaveis publicas
+    //Declaração das atributos publicas
     public String codigo;
     public int quantidade;
     public int pesoEmGramas;
@@ -24,7 +24,7 @@ public class EntradaCadastro{
 
     public String generateId(String nome, int nextID) {
         String id = String.format("%04d", nextID);
-        return nome.charAt(0) + id; //primeiraletra do nome mais um numero (P004)
+        return nome.charAt(0) + id; //primeiraletra do nome mais um numero (P004), começando do 001
     }
     
     //GETTERS E SETTERS

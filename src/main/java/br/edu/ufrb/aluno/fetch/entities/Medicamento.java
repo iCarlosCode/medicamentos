@@ -1,4 +1,5 @@
 package br.edu.ufrb.aluno.fetch.entities;
+//Classe que conecta o FRONT ao BACK, para JSON.
 
 public class Medicamento {
     //Declaração das atributos privados
@@ -43,7 +44,7 @@ public class Medicamento {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         Medicamento remedio = (Medicamento) obj;
-        //Cmparando com base no peso,status,nome, fabricante e outras informações.
+        //Comparando com base no peso,status,nome, fabricante e outras informações.
         return  
                 this.pesoEmGramas == remedio.pesoEmGramas &&
                 this.statusGenerico == remedio.statusGenerico &&
