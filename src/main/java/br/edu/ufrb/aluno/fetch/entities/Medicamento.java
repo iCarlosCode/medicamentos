@@ -1,5 +1,7 @@
 package br.edu.ufrb.aluno.fetch.entities;
 
+import java.util.ArrayList;
+
 public class Medicamento {
     //Declara as variaveis privadas
     private String codigo;
@@ -13,8 +15,15 @@ public class Medicamento {
     private String fabricante;
     private String outrasInformacoes;
     
-    
+    private Fornecedor fornecedor;
 
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
 
     public Medicamento(String codigo, 
     int quantidade, 
@@ -25,15 +34,13 @@ public class Medicamento {
     String fabricante, 
     String outrasInformacoes) {
         this.codigo = codigo;
-            this.quantidade = quantidade;
-            this.pesoEmGramas = pesoEmGramas;
-            this.statusGenerico = statusGenerico;
-            this.statusTarjaPreta = statusTarjaPreta;
-            this.nome = nome;
-            this.fabricante = fabricante;
-            this.outrasInformacoes = outrasInformacoes;
-
-        
+        this.quantidade = quantidade;
+        this.pesoEmGramas = pesoEmGramas;
+        this.statusGenerico = statusGenerico;
+        this.statusTarjaPreta = statusTarjaPreta;
+        this.nome = nome;
+        this.fabricante = fabricante;
+        this.outrasInformacoes = outrasInformacoes;
         
     }
     
@@ -52,6 +59,8 @@ public class Medicamento {
     
    
     //Getters e Setters do Medicamento
+    
+    
     public String getCodigo() {
         return codigo;
     }

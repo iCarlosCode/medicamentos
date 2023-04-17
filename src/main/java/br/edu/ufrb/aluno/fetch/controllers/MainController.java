@@ -38,8 +38,6 @@ public class MainController {
     public void put(@RequestBody String medicamentoACadastrar) {
         
         String json = medicamentoACadastrar;
-        
-        
         try{
             ObjectMapper mapper = new ObjectMapper();
             EntradaCadastro entradaCadastro = mapper.readValue(json, EntradaCadastro.class);
